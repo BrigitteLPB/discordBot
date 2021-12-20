@@ -13,7 +13,11 @@
 			"group": {
 				"kind": "build",
 				"isDefault": true
-			}
+			},
+			"dependsOn": [
+				"move assets"
+			],
+			"dependsOrder": "parallel"
 		},
 		{
 			"label": "npm: watch",
@@ -47,8 +51,7 @@
 			"group": {
 				"kind": "test",
 				"isDefault": true
-			},
-
+			}
 		},
 		{
 			"label": "clean",
@@ -56,17 +59,18 @@
 			"group": "none",
 			"problemMatcher": "$go",
 			"windows": {
-				// "command": "rd",
-				"command": "del",
+				// "command": "del",
+				// "args": [
+				// 	"-Path",
+				// 	"${workspaceFolder}\\build",
+				// 	"-Force",
+				// 	"-Recurse"
+				// ]
+				"command": "rmdir",
 				"args": [
-					// "${workspaceFolder}\\build",
-					// "/f",
-					// "/s",
-					// "/q",
-					"-Path",
-					"${workspaceFolder}\\build",
-					"-Force",
-					"-Recurse"
+					"/S",
+					"/Q",
+					"${workspaceFolder}\\build"
 				]
 			},
 			"linux": {
@@ -86,6 +90,7 @@
 				"command": "rd",
 				"args": [
 					"/S",
+					"/Q",
 					"${workspaceFolder}\\node_modules"
 				]
 			},
@@ -96,6 +101,19 @@
 					"${workspaceFolder}/node_modules"
 				]
 			}
+		},
+		{
+			"label": "move assets",
+			"type": "shell",
+			"windows": {
+				"command": "robocopy .\\assets .\\build\\assets **.* /e /j /purge && if %ERRORLEVEL% GEQ 9 exit /b 1"
+			},
+			"linux":{
+				"command": "rsync ..."
+			}, 
+			"problemMatcher": [
+				"$go"
+			],
 		}
 	]
 }

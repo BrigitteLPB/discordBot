@@ -1,5 +1,5 @@
 {
-  "name": "base_project",
+  "name": "discord_bot",
   "version": "1.0.0",
   "description": "implementation of tree object",
   "main": "build/src/App.js",
@@ -11,7 +11,9 @@
   },
   "author": "BrigitteLPB",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+
+  },
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/typescript": "^2.0.0",

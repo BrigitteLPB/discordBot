@@ -4,28 +4,46 @@
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
 	"version": "0.2.0",
-	"configurations": [
+	"configurations": [		
 		{
 			"name": "Run current program",
 			"program": "${file}",
+			"args": [
+				// "${input:csv_file}"
+			],
 			"request": "launch",
 			"type": "node",
+			"envFile": "${workspaceFolder}/.env",
 			"env": {
-				"NODE_PATH": "./build"
+				"NODE_PATH": "${workspaceFolder}${pathSeparator}build"
 			},
-			"preLaunchTask": "${defaultBuildTask}",
-			"console": "integratedTerminal"
+			"preLaunchTask": "npm: compile",
+			"console": "integratedTerminal",
 		},
 		{
 			"name": "Run program",
-			"program": "${workspaceFolder}/build/App.js",
+			"program": "${workspaceFolder}${pathSeparator}build${pathSeparator}src${pathSeparator}App.js",
+			"args": [
+				
+			],
 			"request": "launch",
 			"type": "node",
+			"envFile": "${workspaceFolder}/.env",
 			"env": {
-				"NODE_PATH": "./build"
+				"NODE_PATH": "${workspaceFolder}${pathSeparator}build"
 			},
-			"preLaunchTask": "${defaultBuildTask}",
+			"preLaunchTask": "npm: compile",
 			"console": "integratedTerminal"
 		}
+	],
+	"inputs": [
+		{
+			"id": "csv_file",
+			"description": "path to the csv file to use",
+			"type": "promptString"
+		}
+	],
+	"compounds": [
+
 	]
 }
