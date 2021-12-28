@@ -33,7 +33,7 @@
 				"NODE_PATH": "${workspaceFolder}${pathSeparator}build"
 			},
 			"preLaunchTask": "npm: compile",
-			"console": "integratedTerminal"
+			"console": "integratedTerminal",
 		}
 	],
 	"inputs": [
