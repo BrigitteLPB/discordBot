@@ -1,4 +1,4 @@
-import { createWriteStream } from 'fs';
+import { createWriteStream, fstat, read, readFileSync, WriteStream } from 'fs';
 import 'jest'
 import { Log } from 'Log';
 import process, { stderr } from 'process';
@@ -16,18 +16,24 @@ describe('Log', () => {
 			streams: [
 				process.stdout
 			]
-		})
+		});
+
 	});
 
-	test('adding a new stream', () => {
-		log_instance.addStreams(process.stderr);
-		expect(log_instance.streams.has(stderr)).toEqual(true);
-	});
+	test('write in file', () => {
+		let path = process.env['NODE_PATH'] + '/.log';
+		let str = 'hello world !';
 
-	test('removing a stream', () => {
-		log_instance.addStreams(process.stderr);
-		log_instance.removeStreams(process.stderr);
-		expect(log_instance.streams.size).toEqual(1);
+		let file = createWriteStream(path, {
+			flags: 'w' 
+		});
+
+		log_instance.pipe(file);
+		log_instance.log(Log.Level.INFO, str);
+		
+		let read_file = readFileSync(path);
+		
+		expect(read_file.slice("[info]	####-##-## ##:##:##	>	".length, read_file.length-1).toString()).toEqual(str);
 	});
 });
 
