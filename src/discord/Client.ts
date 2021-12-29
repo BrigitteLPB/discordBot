@@ -33,7 +33,7 @@ export namespace Client {
 
 			this.events = {};
 			for(let key in this.events){
-				this.events[key] = new Set();
+				this.events[key as keyof ClientEvents] = new Set();
 			}
 		}
 
