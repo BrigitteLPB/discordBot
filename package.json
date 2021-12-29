@@ -4,7 +4,7 @@
   "description": "implementation of tree object",
   "main": "build/src/App.js",
   "scripts": {
-    "run": "cmd /C \"set \"NODE_PATH=./build\" && node .\"",
+    "run": "node .",
     "compile": "tsc",
     "watch": "tsc -w",
     "test": "jest --coverage",

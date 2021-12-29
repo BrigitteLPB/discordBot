@@ -17,6 +17,6 @@ let client = new Client.Client({
 
 
 
-client.addEvents(new Event.Event('messageCreate', async (client, msg) => {
+client.addEvents(new Client.Event('messageCreate', async (client, msg) => {
 	msg.reply("hello world !");
 }));
