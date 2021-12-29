@@ -1,6 +1,6 @@
 import { createWriteStream, fstat, read, readFileSync, WriteStream } from 'fs';
 import 'jest'
-import { Log } from 'Log';
+import { Log } from 'src/Log';
 import process, { stderr } from 'process';
 
 
@@ -11,12 +11,9 @@ describe('Log', () => {
 	
 	beforeEach(() => {
 
-		log_instance = new Log.Utils({
-			throw_error: true,
-			streams: [
+		log_instance = new Log.Utils([
 				process.stdout
-			]
-		});
+		]);
 
 	});
 
@@ -28,12 +25,13 @@ describe('Log', () => {
 			flags: 'w' 
 		});
 
-		log_instance.pipe(file);
-		log_instance.log(Log.Level.INFO, str);
-		
-		let read_file = readFileSync(path);
-		
-		expect(read_file.slice("[info]	####-##-## ##:##:##	>	".length, read_file.length-1).toString()).toEqual(str);
+		file.on('open', () => {
+			log_instance.pipe(file);
+			log_instance.log(Log.Level.INFO, str);
+			
+			let read_file = readFileSync(path);
+			
+			expect(read_file.slice("[info]	####-##-## ##:##:##	>	".length, read_file.length-1).toString()).toEqual(str);		});
 	});
 });
 

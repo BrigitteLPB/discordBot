@@ -13,24 +13,18 @@ export namespace Log {
 	export type WriteStream = NodeJS.WriteStream | fs.WriteStream;
 
 	export class Utils extends Readable {
-		readonly throw_errors: boolean;
-	
 		/**
 		 * constructor to Log.Utils
 		 * @param options the streams to write
 		 */
-		constructor(options: {
-			streams: WriteStream[]
-			throw_error?: boolean,
-		}){
+		constructor(streams: WriteStream[]){
 			super({
 				read: (size: number) => {}
 			});
 			
-			for(let s of options.streams){
+			for(let s of streams){
 				this.pipe(s);
 			}
-			this.throw_errors = options.throw_error ?? false;
 		}
 
 		private static zeroFill = function(n: number, zeroFill: number) {

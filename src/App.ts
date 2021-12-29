@@ -1,13 +1,6 @@
-import { createReadStream, createWriteStream } from "fs";
-import { Readable, Stream } from "stream";
-import { ReadStream, WriteStream } from "tty";
-import { Log } from "./Log";
+import { LOG, logUtil } from "src/Constants";
+import * as fs from 'fs'
 
-let read = new Readable({
-	read: (size)=> {}
+fs.mkdir(LOG.PATH, () => {
+	logUtil.logInfo("hello world !");
 });
-
-read.pipe(process.stdout);
-read.pipe(process.stderr);
-
-read.push('hello world !\n');
