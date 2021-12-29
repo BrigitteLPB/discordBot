@@ -6,42 +6,30 @@
 	"version": "0.2.0",
 	"configurations": [		
 		{
-			"name": "Run current program",
-			"program": "${file}",
-			"args": [
-				// "${input:csv_file}"
-			],
+			"name": "Jest",
+			"command": "npm run test",
 			"request": "launch",
-			"type": "node",
+			"type": "node-terminal",
 			"envFile": "${workspaceFolder}/.env",
 			"env": {
 				"NODE_PATH": "${workspaceFolder}${pathSeparator}build"
 			},
-			"preLaunchTask": "npm: compile",
-			"console": "integratedTerminal",
+			"preLaunchTask": "${defaultBuildTask}"
 		},
 		{
 			"name": "Run program",
-			"program": "${workspaceFolder}${pathSeparator}build${pathSeparator}src${pathSeparator}App.js",
-			"args": [
-				
-			],
+			"command": "npm run run",
 			"request": "launch",
-			"type": "node",
+			"type": "node-terminal",
 			"envFile": "${workspaceFolder}/.env",
 			"env": {
 				"NODE_PATH": "${workspaceFolder}${pathSeparator}build"
 			},
-			"preLaunchTask": "npm: compile",
-			"console": "integratedTerminal",
+			"preLaunchTask": "${defaultBuildTask}"
 		}
 	],
 	"inputs": [
-		{
-			"id": "csv_file",
-			"description": "path to the csv file to use",
-			"type": "promptString"
-		}
+
 	],
 	"compounds": [
 

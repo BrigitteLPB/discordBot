@@ -45,17 +45,6 @@
 			]
 		},
 		{
-			"type": "npm",
-			"script": "test",
-			"dependsOn": [
-				"npm: compile"
-			],
-			"group": {
-				"kind": "test",
-				"isDefault": true
-			}
-		},
-		{
 			"label": "clean",
 			"type": "shell",
 			"group": "none",
