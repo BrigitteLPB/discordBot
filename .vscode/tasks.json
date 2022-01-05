@@ -93,7 +93,7 @@
 			"label": "move assets",
 			"type": "shell",
 			"windows": {
-				"command": "robocopy .\\assets .\\build\\assets **.* /e /j /purge && if %ERRORLEVEL% GEQ 9 exit /b 1"
+				"command": "${workspaceFolder}/.vscode/robocopy.cmd"
 			},
 			"linux": {
 				"command": "rsync ..."
