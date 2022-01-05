@@ -74,10 +74,11 @@
 			"windows": {
 				"command": "del",
 				"args": [
-					"${workspaceFolder}\\node_modules",
 					"/f",
 					"/s",
-					"/q"
+					"/q",
+					"${workspaceFolder}\\node_modules",
+					"${workspaceFolder}\\package-lock.json"
 				]
 			},
 			"linux": {
